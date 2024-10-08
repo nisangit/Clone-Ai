@@ -1,0 +1,120 @@
+.side-container {
+  display: flex;
+  flex-direction: column;
+  width: 22%;
+  height: 100vh;
+  position: fixed;
+  left: -100%; /* Sidebar hidden by default for mobile */
+  transition: left 0.3s ease;
+  background-color: rgb(243, 254, 252);
+  border-right: 1px solid rgba(255, 255, 255, 0.2); /* Light border for glass look */
+  border-radius: 10px;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 100; /* Ensure sidebar stays on top when visible */
+}
+.side-contents{
+  padding-top: 20%;
+}
+
+.side-container.open {
+  left: 0; /* Sidebar visible when toggled */
+}
+
+/* Menu icon positioning for mobile view */
+.menu-icon {
+  position: fixed;
+  top: 20px;
+  left: 15px;
+  z-index: 10001; /* Keep menu icon above sidebar */
+}
+
+.menu-icon button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-icon img {
+  width: 25px;
+  height: 25px;
+}
+
+/* Sidebar content */
+.new-chat {
+  border-radius: 15px;
+  width: 110px;
+  padding: 1px;
+  margin-top: 20%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  background: #007bff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  margin-left: 10%;
+  color: white;
+}
+.new-chat:hover {
+  background-color: #0056b3;
+}
+
+
+.recent {
+  padding-left: 15px;
+  margin-top: 12%;
+}
+
+.recent p {
+  font-weight: 600;
+}
+.chats-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.chat-line {
+  display: flex;
+  align-items: center;
+  border: 1px solid;
+  padding: 0 10px;
+  margin: 20px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.chat-line:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.chat-line img {
+  width: 25px;
+  height: 18px;
+}
+
+/* Media query for desktop view */
+@media screen and (min-width: 769px) {
+  .menu-icon {
+    display: none; /* Hide menu icon on desktop */
+  }
+
+  .side-container {
+    left: 0; /* Always show the sidebar on desktop */
+    width: 22%; /* Sidebar width for desktop */
+    position: fixed;
+    z-index: 100; /* Sidebar always visible on desktop */
+  }
+}
+
+/* Media query for mobile view */
+@media screen and (max-width: 768px) {
+  .side-container {
+    width: 50%; /* Adjust width for mobile view */
+    z-index: 100; /* Ensure sidebar is on top */
+  }
+}
