@@ -23,7 +23,6 @@
     }
 }
 
-
 .message {
     max-width: 60%;
     margin-bottom: 10px;
@@ -53,7 +52,7 @@
     height: 7%;
     justify-content: center;
     position: fixed;
-    bottom: 0;
+    bottom: 15px;
     left: 50%; /* Move it to the middle of the screen */
     transform: translateX(-35%); /* Center it by shifting it left by half of its width */
     background-color: #fff;
@@ -124,8 +123,7 @@
 @media screen and (max-width: 768px) {
     .chat-container {
         width: 98%;
-        margin-top: 12%;
-        margin-left: 7%;
+        margin-left: 1%;
     }
     .loader {
         padding-left: 0px;
@@ -148,7 +146,7 @@
     }
     .message-container {
         padding-bottom: 90px; /* Increased bottom padding for mobile to ensure proper space */
-        padding-top: 60px;
+        padding-top: 100px;
     }
 }
 

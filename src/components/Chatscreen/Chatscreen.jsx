@@ -72,8 +72,7 @@ function Chatscreen() {
         ) : null}
         {/* This div is used for scrolling to the bottom */}
         <div ref={endOfMessagesRef} />
-      </div>
-
+      </div>      
       <div className="message-input">
         <input
           type="text"
