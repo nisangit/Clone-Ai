@@ -52,7 +52,7 @@
     height: 7%;
     justify-content: center;
     position: fixed;
-    bottom: 15px;
+    bottom: 8px;
     left: 50%; /* Move it to the middle of the screen */
     transform: translateX(-35%); /* Center it by shifting it left by half of its width */
     background-color: #fff;
@@ -136,9 +136,11 @@
     }
     .message-input {
         width: 100%;
-        height: 5%;
+        height: 7%;
         left: 51%; /* Ensure it's still centered on mobile */
         transform: translateX(-48%); /* Center on mobile */
+        bottom: 0px;
+        padding-bottom: 35px;
     }
     .message-input button {
         padding: 10px 20px;
@@ -146,7 +148,7 @@
     }
     .message-container {
         padding-bottom: 90px; /* Increased bottom padding for mobile to ensure proper space */
-        padding-top: 100px;
+        padding-top: 80px;
     }
 }
 
