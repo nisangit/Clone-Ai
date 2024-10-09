@@ -148,7 +148,7 @@
     }
     .message-container {
         padding-bottom: 90px; /* Increased bottom padding for mobile to ensure proper space */
-        padding-top: 20px;
+        padding-top: 60px;
     }
 }
 
