@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 22%;
-  height: 100vh;
+  height: calc(100vh - 60px); /* Sidebar height minus the header height */
   position: fixed;
   left: -100%; /* Sidebar hidden by default for mobile */
   transition: left 0.3s ease;
@@ -12,9 +12,10 @@
   bottom: 0;
   overflow: hidden;
   z-index: 100; /* Ensure sidebar stays on top when visible */
+  top: 60px; /* Start below the header */
 }
 .side-contents{
-  padding-top: 20%;
+  padding-top: 7%;
 }
 
 .side-container.open {
