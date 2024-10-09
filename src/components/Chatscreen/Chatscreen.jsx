@@ -41,8 +41,13 @@ function Chatscreen() {
       );
     });
   };
+  // Auto-scroll effect
+  useEffect(() => {
+    if (messages.length > 0) {
+        endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+}, [messages]);
 
- 
 
   return (
     <div className="chat-container">

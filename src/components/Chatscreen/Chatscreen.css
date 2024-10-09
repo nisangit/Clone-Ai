@@ -18,6 +18,7 @@
     flex-direction: column;
     background-color: #fff;
     padding-bottom: 95px; /* Add padding at the bottom to prevent messages from hiding under the input */
+    padding-top: 20px; /* Added padding to ensure the first message is not hidden */
     /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
     &::-webkit-scrollbar {
         display: none;
@@ -63,6 +64,7 @@
     transform: translateX(-35%); /* Center it by shifting it left by half of its width */
     background-color: #fff;
     padding: 10px 50px 20px 50px;
+    z-index: 100; /* Ensure it's above other elements */
 }
 
 .message-input input {
