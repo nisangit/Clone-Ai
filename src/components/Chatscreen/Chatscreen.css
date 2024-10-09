@@ -1,11 +1,12 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 60px); /* Full height minus header height */
     width: 78%;
     background-color: #fff;
     position: absolute;
     right: 0;
+    top: 60px; /* Start below the header */
     overflow: hidden;
 }
 
@@ -16,7 +17,6 @@
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    margin-top: 5%;
     padding-bottom: 95px; /* Add padding at the bottom to prevent messages from hiding under the input */
     /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
     &::-webkit-scrollbar {
@@ -150,13 +150,7 @@
 
     }
     .message-container {
-        margin-top: 13%;
         padding-bottom: 90px; /* Increased bottom padding for mobile to ensure proper space */
     }
 }
 
-@media screen and (max-width: 1200px) {
-    .message-container {
-        margin-top: 15%;
-    }
-}

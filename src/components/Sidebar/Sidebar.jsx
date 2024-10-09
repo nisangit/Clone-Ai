@@ -31,7 +31,7 @@ function Sidebar({ onPromptClick }) { // Receive the callback as a prop
             <p>Sample Prompts</p>
           </div>
           <div className='chats-bar'>
-            <div className='chat-line' onClick={() => onPromptClick('What is Generative AI ?')}>
+            <div className='chat-line' onClick={() => onPromptClick('What is ChatBot ?')}>
               <img src={assets.message_icon} alt='msgicon' />
               <p>What is ChatBot ?</p>
             </div>
@@ -39,9 +39,9 @@ function Sidebar({ onPromptClick }) { // Receive the callback as a prop
               <img src={assets.message_icon} alt='msgicon' />
               <p>What is React JS ?</p>
             </div>
-            <div className='chat-line' onClick={() => onPromptClick('Leading actors in Tamil ?')}>
+            <div className='chat-line' onClick={() => onPromptClick('What is API ?')}>
               <img src={assets.message_icon} alt='msgicon' />
-              <p>Leading actors in Tamil ?</p>
+              <p>What is API ?</p>
             </div>
           </div>
         </div>
