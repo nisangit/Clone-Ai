@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
-
 .chat-container {
     display: flex;
     flex-direction: column;
@@ -19,15 +17,16 @@
     flex-direction: column;
     background-color: #fff;
     margin-top: 5%;
+    padding-bottom: 95px; /* Add padding at the bottom to prevent messages from hiding under the input */
     /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
     &::-webkit-scrollbar {
-        display: none; /* Hide scrollbar */
+        display: none;
     }
 }
 
 .message-container::-webkit-scrollbar {
-    width: 0; /* Hides scrollbar for Chrome, Safari, and Edge */
-    height: 0; /* Hides scrollbar for Chrome, Safari, and Edge */
+    width: 0;
+    height: 0;
 }
 
 .message {
@@ -53,7 +52,6 @@
     color: black;
 }
 
-/* Fix message input at the bottom */
 .message-input {
     display: flex;
     width: 70%;
@@ -61,9 +59,10 @@
     justify-content: center;
     position: fixed;
     bottom: 0;
-    right: 4%;
+    left: 50%; /* Move it to the middle of the screen */
+    transform: translateX(-35%); /* Center it by shifting it left by half of its width */
     background-color: #fff;
-    padding: 10px;
+    padding: 10px 50px 20px 50px;
 }
 
 .message-input input {
@@ -85,6 +84,10 @@
     border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
+}
+
+.message-input button: :hover {
+    background-color: #0056b3;
 }
 
 .loader {
@@ -134,22 +137,26 @@
         margin-right: 6%;
     }
     .message-input input {
-        font-size: 25px;
+        font-size: 18px;
     }
-    .message-input{
-        width: 90%;
-        right: 0;
-        height: 6%;
+    .message-input {
+        width: 100%;
+        height: 5%;
+        left: 51%; /* Ensure it's still centered on mobile */
+        transform: translateX(-48%); /* Center on mobile */
     }
     .message-input button {
-        padding: 10px 40px;
+        padding: 10px 20px;
+
     }
     .message-container {
         margin-top: 13%;
+        padding-bottom: 90px; /* Increased bottom padding for mobile to ensure proper space */
     }
 }
+
 @media screen and (max-width: 1200px) {
     .message-container {
-        margin-top: 8%;
+        margin-top: 15%;
     }
 }

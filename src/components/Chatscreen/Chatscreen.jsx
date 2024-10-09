@@ -1,18 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Context } from '../../context/context';
 import './Chatscreen.css';
+import Sidebar from '../Sidebar/Sidebar'; // Import Sidebar
 
 function Chatscreen() {
-  const { messages, onSent } = useContext(Context); // Get messages and onSent from context
+  const { messages, onSent } = useContext(Context);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const endOfMessagesRef = useRef(null); // Create a ref for the end of messages
 
-  const handleSendMessage = async () => {
-    if (input.trim()) {
+  const handleSendMessage = async (message) => {
+    if (message.trim()) {
       setLoading(true);
-      await onSent(input); // Send the message through the onSent function
+      await onSent(message);
       setLoading(false);
-      setInput(''); // Clear input field
+      setInput(''); // Clear input after sending
     }
   };
 
@@ -20,15 +22,19 @@ function Chatscreen() {
     setInput(e.target.value);
   };
 
+  const handlePromptClick = (promptText) => {
+    setInput(promptText); // Set the input field with the prompt text
+    handleSendMessage(promptText); // Automatically send the prompt
+  };
+
   const renderMessage = (text) => {
-    const parts = text.split("**"); // Split the text by '**'
+    const parts = text.split("**");
     return parts.map((part, index) => {
-      // If the index is odd, wrap the part in a <strong> tag
       return index % 2 === 1 ? (
         <div key={index}>
-          <br /> {/* Add a break before the bold text */}
+          <br />
           <strong>{part}</strong>
-          <br /> {/* Add a break after the bold text */}
+          <br />
         </div>
       ) : (
         part
@@ -36,8 +42,14 @@ function Chatscreen() {
     });
   };
 
+  // Auto-scroll effect
+  useEffect(() => {
+    endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]); // This effect runs every time the messages change
+
   return (
     <div className="chat-container">
+      <Sidebar onPromptClick={handlePromptClick} /> {/* Pass the prompt handler */}
       <div className="message-container">
         {messages.map((message) => (
           <div
@@ -56,6 +68,8 @@ function Chatscreen() {
             </div>
           </div>
         ) : null}
+        {/* This div is used for scrolling to the bottom */}
+        <div ref={endOfMessagesRef} />
       </div>
 
       <div className="message-input">
@@ -64,9 +78,9 @@ function Chatscreen() {
           value={input}
           onChange={handleInputChange}
           placeholder="Type your message..."
-          onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+          onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(input)}
         />
-        <button onClick={handleSendMessage}>Send</button>
+        <button onClick={() => handleSendMessage(input)}>Send</button>
       </div>
     </div>
   );

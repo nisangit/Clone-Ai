@@ -77,6 +77,8 @@
 
 .chat-line {
   display: flex;
+  width: 80%;
+  height: 60px;
   align-items: center;
   border: 1px solid;
   padding: 0 10px;
@@ -85,6 +87,8 @@
   cursor: pointer;
   font-weight: 600;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  overflow-y: hidden;
+  gap: 10px;
 }
 
 .chat-line:hover {
