@@ -8,6 +8,7 @@ function Chatscreen() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const endOfMessagesRef = useRef(null); // Create a ref for the end of messages
+  const messageInputRef = useRef(null); // Create a ref for the message input container
 
   const handleSendMessage = async (message) => {
     if (message.trim()) {
@@ -44,7 +45,19 @@ function Chatscreen() {
 
   // Auto-scroll effect
   useEffect(() => {
-    endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const messageContainer = endOfMessagesRef.current?.parentElement;
+
+    if (messageContainer && messageInputRef.current) {
+      const messageContainerHeight = messageContainer.scrollHeight;
+      const messageInputHeight = messageInputRef.current.offsetHeight;
+      const lastMessageBottom = endOfMessagesRef.current.getBoundingClientRect().bottom;
+      const messageInputBottom = messageContainer.getBoundingClientRect().bottom - messageInputHeight;
+
+      // Scroll to bottom only if the last message goes below the input container
+      if (lastMessageBottom > messageInputBottom) {
+        endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   }, [messages]); // This effect runs every time the messages change
 
   return (
@@ -72,7 +85,7 @@ function Chatscreen() {
         <div ref={endOfMessagesRef} />
       </div>
 
-      <div className="message-input">
+      <div className="message-input" ref={messageInputRef}>
         <input
           type="text"
           value={input}
