@@ -43,7 +43,7 @@ function Chatscreen() {
   };
   // Auto-scroll effect
   useEffect(() => {
-    if (messages.length > 0) {
+    if (messages.length >1) {
         endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
 }, [messages]);
