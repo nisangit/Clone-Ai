@@ -140,7 +140,7 @@
         left: 51%; /* Ensure it's still centered on mobile */
         transform: translateX(-48%); /* Center on mobile */
         bottom: 0px;
-        padding-bottom: 35px;
+        padding-bottom: 22px;
     }
     .message-input button {
         padding: 10px 20px;
