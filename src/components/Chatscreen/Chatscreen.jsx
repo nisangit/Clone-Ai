@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Context } from '../../context/context';
 import './Chatscreen.css';
-import Sidebar from '../Sidebar/Sidebar'; // Import Sidebar
+import Sidebar from '../Sidebar/Sidebar';
 
 function Chatscreen() {
   const { messages, onSent } = useContext(Context);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const endOfMessagesRef = useRef(null); // Create a ref for the end of messages
+  const endOfMessagesRef = useRef(null);
+  const messageContainerRef = useRef(null);
 
   const handleSendMessage = async (message) => {
     if (message.trim()) {
@@ -41,18 +42,45 @@ function Chatscreen() {
       );
     });
   };
+
   // Auto-scroll effect
   useEffect(() => {
     if (messages.length > 0) {
-        endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+      endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-}, [messages]);
+  }, [messages]);
 
+  // Handle keyboard events to adjust padding
+  useEffect(() => {
+    const handleKeyboardShow = () => {
+      if (messageContainerRef.current) {
+        messageContainerRef.current.style.paddingBottom = '50px'; // Adjust as needed
+      }
+    };
+
+    const handleKeyboardHide = () => {
+      if (messageContainerRef.current) {
+        messageContainerRef.current.style.paddingBottom = '95px'; // Reset padding
+      }
+    };
+
+    window.addEventListener('resize', () => {
+      if (window.innerHeight < window.outerHeight) {
+        handleKeyboardShow();
+      } else {
+        handleKeyboardHide();
+      }
+    });
+
+    return () => {
+      window.removeEventListener('resize', handleKeyboardHide);
+    };
+  }, []);
 
   return (
     <div className="chat-container">
-      <Sidebar onPromptClick={handlePromptClick} /> {/* Pass the prompt handler */}
-      <div className="message-container">
+      <Sidebar onPromptClick={handlePromptClick} />
+      <div className="message-container" ref={messageContainerRef}>
         {messages.map((message) => (
           <div
             key={message.id}
@@ -61,7 +89,7 @@ function Chatscreen() {
             <p>{message.sender === 'bot' ? renderMessage(message.text) : message.text}</p>
           </div>
         ))}
-        {loading ? (
+        {loading && (
           <div className="loader">
             <div className="loader-dots">
               <span></span>
@@ -69,8 +97,7 @@ function Chatscreen() {
               <span></span>
             </div>
           </div>
-        ) : null}
-        {/* This div is used for scrolling to the bottom */}
+        )}
         <div ref={endOfMessagesRef} />
       </div>
 

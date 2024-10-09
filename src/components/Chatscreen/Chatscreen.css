@@ -13,12 +13,13 @@
 .message-container {
     flex: 1;
     padding: 20px;
+    padding-bottom: 95px; /* Add padding at the bottom to prevent messages from hiding under the input */
+    padding-top: 3vh; /* Add padding at the top to account for the header */
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    padding-bottom: 95px; /* Add padding at the bottom to prevent messages from hiding under the input */
-    padding-top: 20px; /* Added padding to ensure the first message is not hidden */
+
     /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
     &::-webkit-scrollbar {
         display: none;
